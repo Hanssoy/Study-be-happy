@@ -1,5 +1,6 @@
 package com.example.yeppi.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.yeppi.entity.Board;
@@ -47,5 +48,12 @@ public class BoardController {
             @PathVariable Integer no, @RequestBody Board board) {
 
         return boardService.modifyBoard(no, board);
+    }
+
+    @DeleteMapping("/board/{no}")
+    public ResponseEntity<HashMap<String, Boolean>> deleteBoardByNo(
+            @PathVariable Integer no) {
+
+        return boardService.deleteBoard(no);
     }
 }

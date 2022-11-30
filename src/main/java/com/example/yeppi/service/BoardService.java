@@ -1,6 +1,7 @@
 package com.example.yeppi.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.yeppi.entity.Board;
@@ -43,5 +44,15 @@ public class BoardService {
 
         Board endModifyBoard = boardRepository.save(board);
         return ResponseEntity.ok(endModifyBoard);
+    }
+
+    public ResponseEntity<HashMap<String, Boolean>> deleteBoard(Integer no) {
+        Board board = boardRepository.findById(no)
+                .orElseThrow();
+        boardRepository.delete(board);
+        HashMap<String, Boolean> response = new HashMap<>();
+        response.put("Deleted Board Data by id : ["+no+"]", Boolean.TRUE);
+
+        return ResponseEntity.ok(response);
     }
 }
